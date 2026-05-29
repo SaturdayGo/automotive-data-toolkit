@@ -1,14 +1,18 @@
 """品牌归一化模块：将品牌变体映射到标准品牌名。"""
 
+import json
 import re
+from pathlib import Path
 from typing import Optional
+
+from config_utils import load_brands, load_variant_map
 
 
 class BrandNormalizer:
     """品牌归一化器。"""
 
-    # 品牌变体 → 标准品牌名映射
-    VARIANT_MAP = {
+    # 品牌变体 → 标准品牌名映射（从 assets/brands.json 加载，硬编码作为回退）
+    VARIANT_MAP = load_variant_map() or {
         "三菱系列": "三菱",
         "丰田系列": "丰田",
         "奔驰系列": "奔驰",
@@ -17,13 +21,26 @@ class BrandNormalizer:
         "铃木系列": "铃木",
     }
 
-    # 已知品牌列表（用于从车型名中提取品牌）
-    KNOWN_BRANDS = [
+    # 已知品牌列表（从 assets/brands.json 加载，硬编码作为回退）
+    KNOWN_BRANDS = load_brands() or [
         "宝马", "奔驰", "奥迪", "丰田", "本田", "日产", "马自达",
         "福特", "现代", "雷克萨斯", "雪佛兰", "吉普", "路虎",
         "三菱", "铃木", "大众", "特斯拉", "凯迪拉克", "别克",
         "五菱", "道奇", "起亚", "坦克", "沃尔沃", "标致",
     ]
+
+    def __init__(self):
+        """初始化并加载 brand_series_map 用于反向查找。"""
+        self._series_to_brand = {}
+        mapping_path = Path(__file__).parent.parent / "assets" / "mapping-data.json"
+        if mapping_path.exists():
+            with open(mapping_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for key, series in data.get("brand_series_map", {}).items():
+                # series 格式: "丰田 凯美瑞" → 提取品牌 "丰田"
+                parts = series.split(" ", 1)
+                if len(parts) == 2:
+                    self._series_to_brand[key] = parts[0]
 
     def normalize(self, brand: str) -> str:
         """归一化品牌名。
@@ -53,9 +70,19 @@ class BrandNormalizer:
             if variant in model_name:
                 return standard
 
-        # 再检查标准品牌
+        # 再检查标准品牌（带词边界保护）
+        # 只阻断已知的复合词误匹配（如"宝马仕"中的"仕"）
+        _COMPOUND_CHARS = set('仕')
         for brand in self.KNOWN_BRANDS:
             if brand in model_name:
+                idx = model_name.index(brand) + len(brand)
+                if idx < len(model_name) and model_name[idx] in _COMPOUND_CHARS:
+                    continue
+                return brand
+
+        # 最后从 brand_series_map 反向查找（如"凯美瑞"→"丰田"）
+        for key, brand in self._series_to_brand.items():
+            if key in model_name:
                 return brand
 
         return None

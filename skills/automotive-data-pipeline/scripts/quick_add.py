@@ -4,7 +4,7 @@ import json
 import argparse
 import sys
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 SCRIPT_DIR = Path(__file__).parent
 SKILL_DIR = SCRIPT_DIR.parent
@@ -71,7 +71,7 @@ def list_tables() -> None:
 def quick_add(config_path: str, name: str, size: str = None, weight: str = None,
               brand: str = None, series: str = None, model: str = None,
               product_type: str = None, year_range: str = None,
-              supplier: str = None, notes: str = None) -> Dict:
+              supplier: str = None, notes: str = None) -> List[Dict]:
     """快速添加单条记录。
 
     Args:

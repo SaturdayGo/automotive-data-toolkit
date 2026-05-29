@@ -61,12 +61,23 @@ class LarkWrapper:
                     timeout=60
                 )
 
-                # 抑制 stderr（proxy 警告等）
+                # 非零返回码时记录 stderr（但过滤 proxy 警告）
+                if result.returncode != 0 and result.stderr:
+                    stderr_clean = result.stderr.strip()
+                    if "proxy" not in stderr_clean.lower():
+                        print(f"[lark-cli stderr] {stderr_clean}")
+
                 stdout = result.stdout
 
                 # 尝试解析 JSON
                 try:
-                    return json.loads(stdout)
+                    parsed = json.loads(stdout)
+                    # 检查 429 限流
+                    if isinstance(parsed, dict) and parsed.get("code") == 429:
+                        if attempt < retry - 1:
+                            time.sleep(2 ** (attempt + 1))  # 限流退避更长
+                            continue
+                    return parsed
                 except json.JSONDecodeError:
                     # 如果不是 JSON，返回原始文本
                     return {"raw": stdout, "returncode": result.returncode}
@@ -74,6 +85,11 @@ class LarkWrapper:
             except subprocess.TimeoutExpired:
                 if attempt < retry - 1:
                     time.sleep(2 ** attempt)  # 指数退避
+                    continue
+                raise
+            except (ConnectionError, OSError) as e:
+                if attempt < retry - 1:
+                    time.sleep(2 ** attempt)
                     continue
                 raise
 
@@ -92,9 +108,9 @@ class LarkWrapper:
             创建结果列表
         """
         results = []
+        total_batches = (len(records) + batch_size - 1) // batch_size
         for i in range(0, len(records), batch_size):
             batch = records[i:i + batch_size]
-            # 过滤 null 值
             cleaned_batch = self._clean_records(batch)
             data = json.dumps({"records": cleaned_batch}, ensure_ascii=False)
             result = self.run(
@@ -102,6 +118,10 @@ class LarkWrapper:
                 ["--base-token", base_token, "--table-id", table_id, "--json", data]
             )
             results.append(result)
+            batch_num = i // batch_size + 1
+            print(f"  批次 {batch_num}/{total_batches} 完成 ({len(batch)} 条)")
+            if batch_num < total_batches:
+                time.sleep(0.5)
         return results
 
     def batch_update(self, base_token: str, table_id: str, record_ids: List[str], patch: Dict, batch_size: int = 500) -> List[Dict]:
@@ -118,6 +138,7 @@ class LarkWrapper:
             更新结果列表
         """
         results = []
+        total_batches = (len(record_ids) + batch_size - 1) // batch_size
         for i in range(0, len(record_ids), batch_size):
             batch_ids = record_ids[i:i + batch_size]
             data = json.dumps({"record_id_list": batch_ids, "patch": patch}, ensure_ascii=False)
@@ -126,6 +147,10 @@ class LarkWrapper:
                 ["--base-token", base_token, "--table-id", table_id, "--json", data]
             )
             results.append(result)
+            batch_num = i // batch_size + 1
+            print(f"  批次 {batch_num}/{total_batches} 完成 ({len(batch_ids)} 条)")
+            if batch_num < total_batches:
+                time.sleep(0.5)
         return results
 
     def _clean_records(self, records: List[Dict]) -> List[Dict]:

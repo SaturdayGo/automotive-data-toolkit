@@ -64,8 +64,8 @@ class Deduplicator:
 
         return duplicates
 
-    def remove_duplicates(self, duplicates: List[Dict], field: str, dry_run: bool = True) -> List[Dict]:
-        """删除重复记录。
+    def remove_duplicate_attachments(self, duplicates: List[Dict], field: str, dry_run: bool = True) -> List[Dict]:
+        """清除重复记录的附件（不删除记录本身）。
 
         Args:
             duplicates: 重复记录组
@@ -73,7 +73,7 @@ class Deduplicator:
             dry_run: 是否只预览不执行
 
         Returns:
-            删除结果
+            清除结果
         """
         results = []
         for group in duplicates:
@@ -132,8 +132,8 @@ def main():
     if args.dry_run:
         print("\n预览模式，未执行删除")
     else:
-        results = dedup.remove_duplicates(duplicates, args.field, dry_run=False)
-        print(f"\n已删除 {len(results)} 条重复记录")
+        results = dedup.remove_duplicate_attachments(duplicates, args.field, dry_run=False)
+        print(f"\n已清除 {len(results)} 条重复记录的附件")
 
 
 if __name__ == "__main__":

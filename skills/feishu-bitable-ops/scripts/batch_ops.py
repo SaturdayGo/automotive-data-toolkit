@@ -48,20 +48,24 @@ class BatchOperator:
             data = json.load(f)
 
         records = data if isinstance(data, list) else data.get("records", [])
-        results = []
+        record_ids = []
+        patch = {}
 
         for record in records:
             record_id = record.pop("record_id", None)
             if record_id:
-                result = self.wrapper.batch_update(
-                    self.config["base_token"],
-                    self.config["table_id"],
-                    [record_id],
-                    record
-                )
-                results.extend(result)
+                record_ids.append(record_id)
+                patch.update(record)
 
-        return results
+        if not record_ids:
+            return []
+
+        return self.wrapper.batch_update(
+            self.config["base_token"],
+            self.config["table_id"],
+            record_ids,
+            patch
+        )
 
     def remove_attachment(self, record_id: str, field_id: str, file_token: str) -> Dict:
         """删除附件。

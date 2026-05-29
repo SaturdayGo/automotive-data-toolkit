@@ -9,13 +9,14 @@ from typing import Dict, Any, Optional, List
 
 from brand_normalizer import BrandNormalizer
 from wikipedia_verifier import WikipediaVerifier
+from config_utils import load_product_types
 
 
 class VehicleClassifier:
     """车辆分类器。"""
 
-    # 产品类型关键词
-    PRODUCT_TYPES = [
+    # 产品类型关键词（从 assets/product-types.json 加载，硬编码作为回退）
+    PRODUCT_TYPES = load_product_types() or [
         "大灯", "尾灯", "贯穿灯", "雾灯", "转向灯", "刹车灯",
         "后杠灯", "叶子板灯", "日行灯", "示宽灯", "倒车灯",
         "前杠灯", "后尾灯", "前大灯", "LED灯", "激光大灯",
@@ -117,6 +118,13 @@ class VehicleClassifier:
             else:
                 end += 1900
             return f"{start}-{end}"
+
+        # 从 GENERATION_MAP 匹配代数（如"14代"→"2019-2025"）
+        for model_key, generations in self.GENERATION_MAP.items():
+            if model_key in model_name:
+                for gen_label, gen_info in generations.items():
+                    if gen_label in model_name:
+                        return gen_info.get("years")
 
         return None
 
@@ -222,6 +230,9 @@ def main():
                         results.append(result)
 
             if args.output:
+                if not results:
+                    print("警告: 未找到有效数据行")
+                    return
                 with open(args.output, "w", encoding="utf-8-sig", newline="") as f:
                     writer = csv.DictWriter(f, fieldnames=results[0].keys())
                     writer.writeheader()
