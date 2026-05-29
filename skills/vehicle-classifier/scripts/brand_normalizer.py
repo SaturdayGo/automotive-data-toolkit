@@ -30,17 +30,24 @@ class BrandNormalizer:
     ]
 
     def __init__(self):
-        """初始化并加载 brand_series_map 用于反向查找。"""
+        """初始化并加载 brand_series_map 和 mappings 用于反向查找。"""
         self._series_to_brand = {}
         mapping_path = Path(__file__).parent.parent / "assets" / "mapping-data.json"
         if mapping_path.exists():
             with open(mapping_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
+            # 从 brand_series_map 提取（如 "霸道"→"丰田"）
             for key, series in data.get("brand_series_map", {}).items():
-                # series 格式: "丰田 凯美瑞" → 提取品牌 "丰田"
                 parts = series.split(" ", 1)
                 if len(parts) == 2:
                     self._series_to_brand[key] = parts[0]
+            # 从 mappings 提取中文车型名（如 "凯美瑞"→"丰田"）
+            for brand, models in data.get("mappings", {}).items():
+                for model_key, model_info in models.items():
+                    if model_key not in self._series_to_brand:
+                        # 只提取中文名称（非底盘代号）
+                        if any('一' <= c <= '鿿' for c in model_key):
+                            self._series_to_brand[model_key] = brand
 
     def normalize(self, brand: str) -> str:
         """归一化品牌名。

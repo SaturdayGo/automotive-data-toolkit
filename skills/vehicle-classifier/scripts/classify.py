@@ -5,6 +5,7 @@ import json
 import sys
 import argparse
 import csv
+from datetime import datetime
 from typing import Dict, Any, Optional, List
 
 from brand_normalizer import BrandNormalizer
@@ -109,11 +110,14 @@ class VehicleClassifier:
         if match:
             start = int(match.group(1))
             end = int(match.group(2))
-            if start < 50:
+            # 基于当前年份动态计算阈值
+            current_year_short = datetime.now().year % 100
+            threshold = current_year_short + 1  # 明年及以后视为 19xx
+            if start < threshold:
                 start += 2000
             else:
                 start += 1900
-            if end < 50:
+            if end < threshold:
                 end += 2000
             else:
                 end += 1900
@@ -170,19 +174,33 @@ class VehicleClassifier:
         return f"{brand} {model}"
 
     def _calculate_confidence(self, result: Dict[str, Any]) -> float:
-        """计算置信度。"""
+        """计算置信度（含质量因子）。"""
         score = 0.0
+
+        # 基础字段存在性
         if result["brand"]:
-            score += 0.3
+            score += 0.25
         if result["series"]:
-            score += 0.3
+            score += 0.25
         if result["model"]:
-            score += 0.2
+            score += 0.15
         if result["product_type"]:
             score += 0.1
         if result["year_range"]:
             score += 0.1
-        return round(score, 2)
+
+        # 质量因子：映射表命中（series 来自映射表而非拼接）
+        if result["series"] and result["brand"]:
+            series_str = result["series"]
+            # 如果 series 包含品牌名且格式为"品牌 车型"，说明是拼接而非映射
+            if not series_str.startswith(result["brand"] + " "):
+                score += 0.1  # 映射表命中加分
+
+        # 质量因子：model 长度合理性（太短可能是噪声）
+        if result["model"] and len(result["model"]) >= 2:
+            score += 0.05
+
+        return round(min(score, 1.0), 2)
 
     def lookup(self, chassis_code: str) -> Dict[str, Any]:
         """查询底盘代号。"""
