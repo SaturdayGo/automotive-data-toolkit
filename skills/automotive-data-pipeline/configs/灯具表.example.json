@@ -1,0 +1,18 @@
+{
+  "base_token": "YOUR_BASE_TOKEN",
+  "table_id": "YOUR_TABLE_ID",
+  "field_mapping": {
+    "核心车型": "YOUR_FIELD_ID",
+    "车系": "YOUR_FIELD_ID",
+    "产品类型": "YOUR_FIELD_ID",
+    "年款": "YOUR_FIELD_ID",
+    "款式/风格": "YOUR_FIELD_ID",
+    "供应商/来源": "YOUR_FIELD_ID",
+    "尺寸": "YOUR_FIELD_ID",
+    "重量": "YOUR_FIELD_ID",
+    "图片": "YOUR_FIELD_ID",
+    "备注": "YOUR_FIELD_ID",
+    "人工审核": "YOUR_FIELD_ID",
+    "原始车型名": "YOUR_FIELD_ID"
+  }
+}

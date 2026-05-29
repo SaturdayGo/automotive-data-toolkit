@@ -1,0 +1,6 @@
+{
+  "default": "灯具表",
+  "tables": {
+    "灯具表": "configs/灯具表.json"
+  }
+}

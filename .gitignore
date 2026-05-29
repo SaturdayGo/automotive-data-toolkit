@@ -48,10 +48,13 @@ htmlcov/
 # Secrets - NEVER commit these
 *.env
 .env.*
-config.json
+*config*.json
 *credentials*
 *secret*
 *token*
+!*.example.json
+!config-template.json
+!tables.example.json
 
 # Temporary files
 tmp/
