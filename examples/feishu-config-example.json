@@ -1,0 +1,18 @@
+{
+  "base_token": "YOUR_BASE_TOKEN",
+  "table_id": "YOUR_TABLE_ID",
+  "field_mapping": {
+    "核心车型": "fldonaIzpu",
+    "车系": "fldx9YIC7e",
+    "产品类型": "fldoxR19iy",
+    "年款": "fldkYltBIQ",
+    "款式/风格": "fldoTCBjYx",
+    "供应商/来源": "fldU2CvfuZ",
+    "尺寸": "fld2Bvkpp7",
+    "重量": "fldzFIZFZo",
+    "图片": "fldpWSnOh5",
+    "备注": "fldrtH2N5f",
+    "人工审核": "fldgOkvtyY",
+    "原始车型名": "fld3R3HmL4"
+  }
+}

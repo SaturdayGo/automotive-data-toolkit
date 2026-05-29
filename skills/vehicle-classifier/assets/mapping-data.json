@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-05-29",
+  "wikipedia_verified": true,
+  "mappings": {
+    "宝马": {
+      "E60": {"series": "宝马 5系", "market_name": "5系", "years": "2003-2010", "body": "E60=sedan, E61=wagon"},
+      "E90": {"series": "宝马 3系", "market_name": "3系", "years": "2004-2011", "body": "E90=sedan, E91=wagon, E92=coupé, E93=cabriolet"},
+      "F10": {"series": "宝马 5系", "market_name": "5系", "years": "2010-2017", "body": "F10=sedan, F11=wagon, F18=LWB"},
+      "F02": {"series": "宝马 7系", "market_name": "7系", "years": "2008-2015", "body": "F01=standard, F02=LWB"},
+      "F15": {"series": "宝马 X5", "market_name": "X5", "years": "2013-2018", "body": "F15=standard, F85=X5 M"},
+      "G05": {"series": "宝马 X5", "market_name": "X5", "years": "2018-present", "body": "G05=standard, G18=LWB China"},
+      "G20": {"series": "宝马 3系", "market_name": "3系", "years": "2018-present", "body": "G20=sedan, G21=wagon"},
+      "G30": {"series": "宝马 5系", "market_name": "5系", "years": "2017-present", "body": "G30=sedan, G31=wagon"},
+      "G38": {"series": "宝马 5系", "market_name": "5系（长轴）", "years": "2017-present", "body": "G38=LWB sedan"},
+      "G50": {"series": "宝马 3系", "market_name": "3系（8代）", "years": "2026-present", "body": "G50=ICE sedan (8th gen)"},
+      "R50": {"series": "宝马 MINI", "market_name": "MINI", "years": "2001-2006", "body": "R50=3-door hatch"},
+      "miniR56": {"series": "宝马 MINI", "market_name": "MINI", "years": "2006-2013", "body": "R56=3-door hatch (2nd gen)"},
+      "miniF56": {"series": "宝马 MINI", "market_name": "MINI", "years": "2013-2024", "body": "F56=3-door hatch (3rd gen)"},
+      "E70": {"series": "宝马 X5", "market_name": "X5", "years": "2006-2013", "body": "E70=2nd gen X5"},
+      "F30": {"series": "宝马 3系", "market_name": "3系", "years": "2011-2018", "body": "F30=sedan, F31=wagon"},
+      "4系": {"series": "宝马 4系", "market_name": "4系", "years": "-", "body": "F32(2013-20)/G22(2020+)"},
+      "6系": {"series": "宝马 6系", "market_name": "6系", "years": "-", "body": "E63(2003-10)/F13(2011-18)"}
+    },
+    "奔驰": {
+      "W204": {"series": "奔驰 C级", "market_name": "C级", "years": "2007-2015", "body": "3rd gen C-Class"},
+      "W221": {"series": "奔驰 S级", "market_name": "S级", "years": "2005-2013", "body": "5th gen S-Class"},
+      "W205": {"series": "奔驰 C级", "market_name": "C级", "years": "2014-2021", "body": "4th gen C-Class"},
+      "CLA": {"series": "奔驰 CLA级", "market_name": "CLA级", "years": "-", "body": "C117(2013-19)/C118(2019-25)"},
+      "GLK": {"series": "奔驰 GLK级", "market_name": "GLK级", "years": "-", "body": "X204 (2008-2015)"},
+      "威霆": {"series": "奔驰 V级", "market_name": "V级/Vito", "years": "-", "body": "W447 (2014-present)"}
+    },
+    "丰田": {
+      "LC76": {"series": "丰田 兰德酷路泽", "market_name": "兰德酷路泽", "years": "1984-present", "body": "J70 series (VDJ76)"},
+      "LC71": {"series": "丰田 兰德酷路泽", "market_name": "兰德酷路泽", "years": "1984-present", "body": "J70 series (short wheelbase)"},
+      "LC250": {"series": "丰田 普拉多", "market_name": "普拉多", "years": "2023-present", "body": "J250 (5th gen Prado)"},
+      "霸道": {"series": "丰田 普拉多", "market_name": "普拉多", "years": "-", "body": "Prado 通用名称"},
+      "普拉多": {"series": "丰田 普拉多", "market_name": "普拉多", "years": "-", "body": "通用名称"},
+      "VIGO": {"series": "丰田 海拉克斯", "market_name": "海拉克斯", "years": "2004-2015", "body": "7th gen Hilux"},
+      "海拉克斯": {"series": "丰田 海拉克斯", "market_name": "海拉克斯", "years": "-", "body": "Hilux 通用名称"},
+      "凯美瑞": {"series": "丰田 凯美瑞", "market_name": "凯美瑞", "years": "-", "body": "XV50(2011-19)/XV70(2017-24)/XV80(2023+)"},
+      "埃尔法": {"series": "丰田 埃尔法", "market_name": "埃尔法", "years": "-", "body": "AH20(2008-15)/AH30(2015-23)/AH40(2023+)"},
+      "海狮": {"series": "丰田 海狮", "market_name": "海狮", "years": "-", "body": "Hiace/Regiusace"},
+      "Supra": {"series": "丰田 Supra", "market_name": "Supra", "years": "-", "body": "A90 (2019+)"}
+    },
+    "日产": {
+      "途乐Y61": {"series": "日产 途乐", "market_name": "途乐", "years": "1997-2024", "body": "Y61 (5th gen)"},
+      "途乐Y62": {"series": "日产 途乐", "market_name": "途乐", "years": "2010-present", "body": "Y62 (6th gen)"},
+      "途乐": {"series": "日产 途乐", "market_name": "途乐", "years": "-", "body": "通用名称"},
+      "奇骏": {"series": "日产 奇骏", "market_name": "奇骏", "years": "-", "body": "T30(2000-07)/T31(2007-13)/T32(2013-22)/T33(2021+)"},
+      "逍客": {"series": "日产 逍客", "market_name": "逍客", "years": "-", "body": "J10(2006-13)/J11(2013-21)/J12(2021+)"},
+      "轩逸": {"series": "日产 轩逸", "market_name": "轩逸", "years": "-", "body": "B17(2012-19)/B18(2019-25)"},
+      "纳瓦拉": {"series": "日产 纳瓦拉", "market_name": "纳瓦拉", "years": "-", "body": "NP300 Navara"}
+    },
+    "路虎": {
+      "发现3": {"series": "路虎 发现", "market_name": "发现", "years": "2004-2009", "body": "L319 (Discovery 3/LR3)"},
+      "发现4": {"series": "路虎 发现", "market_name": "发现", "years": "2009-2016", "body": "L319 (Discovery 4/LR4)"},
+      "揽运": {"series": "路虎 揽胜运动版", "market_name": "揽胜运动版", "years": "-", "body": "L320(2005-13)/L494(2013-22)/L461(2022+)"},
+      "揽胜行政": {"series": "路虎 揽胜", "market_name": "揽胜", "years": "-", "body": "L322(2001-12)/L405(2012-21)/L460(2022+)"}
+    },
+    "三菱": {
+      "帕杰罗V73": {"series": "三菱 帕杰罗", "market_name": "帕杰罗", "years": "1999-2006", "body": "V70 (3rd gen LWB)"},
+      "帕杰罗V93": {"series": "三菱 帕杰罗", "market_name": "帕杰罗", "years": "2006-2021", "body": "V90 (4th gen LWB)"},
+      "V93": {"series": "三菱 帕杰罗", "market_name": "帕杰罗", "years": "2006-2021", "body": "V90 (4th gen LWB)"}
+    },
+    "大众": {
+      "高六": {"series": "大众 高尔夫", "market_name": "高尔夫6", "years": "2008-2012", "body": "Mk6 (Typ 5K)"},
+      "高七": {"series": "大众 高尔夫", "market_name": "高尔夫7", "years": "2012-2019", "body": "Mk7 (Typ 5G)"},
+      "高尔夫8": {"series": "大众 高尔夫", "market_name": "高尔夫8", "years": "2019-present", "body": "Mk8 (CD1)"},
+      "迈腾B7": {"series": "大众 迈腾", "market_name": "迈腾", "years": "2011-2016", "body": "B7 (Passat variant)"},
+      "迈腾B8": {"series": "大众 迈腾", "market_name": "迈腾", "years": "2016-present", "body": "B8 (Passat variant)"}
+    },
+    "本田": {
+      "GR9": {"series": "本田 飞度", "market_name": "飞度", "years": "2020-present", "body": "GR series (4th gen Fit)"},
+      "飞度": {"series": "本田 飞度", "market_name": "飞度", "years": "-", "body": "通用名称"},
+      "雅阁": {"series": "本田 雅阁", "market_name": "雅阁", "years": "-", "body": "通用名称"},
+      "缤智": {"series": "本田 缤智", "market_name": "缤智", "years": "-", "body": "HR-V/Vezel (RU series)"},
+      "思域": {"series": "本田 思域", "market_name": "思域", "years": "-", "body": "Civic"},
+      "思铭": {"series": "本田 思铭", "market_name": "思铭", "years": "-", "body": "Ciimo (Honda brand)"}
+    },
+    "马自达": {
+      "昂克赛拉": {"series": "马自达 昂克赛拉", "market_name": "昂克赛拉", "years": "-", "body": "Mazda3 (BK/BL/BM/BN/BP)"},
+      "阿特兹": {"series": "马自达 阿特兹", "market_name": "阿特兹", "years": "-", "body": "Mazda6 (GJ1, 2012-2024)"},
+      "马自达6": {"series": "马自达 阿特兹", "market_name": "马自达6", "years": "-", "body": "Mazda6 (GG1/GH1/GJ1)"}
+    },
+    "福特": {
+      "猛禽": {"series": "福特 F-150猛禽", "market_name": "F-150猛禽", "years": "-", "body": "F-150 Raptor (2010+)"},
+      "野马": {"series": "福特 野马", "market_name": "野马", "years": "-", "body": "Mustang (S550 2015-23/S650 2024+)"},
+      "福克斯": {"series": "福特 福克斯", "market_name": "福克斯", "years": "-", "body": "Focus (C346 2010-18/C519 2018-25)"},
+      "蒙迪欧": {"series": "福特 蒙迪欧", "market_name": "蒙迪欧", "years": "-", "body": "Mondeo (CD4 2012-22)"},
+      "撼路者": {"series": "福特 撼路者", "market_name": "撼路者", "years": "-", "body": "Everest (U375 2015-22/U704 2022+)"},
+      "游骑侠": {"series": "福特 游骑侠", "market_name": "游骑侠", "years": "-", "body": "Ranger T6 platform"}
+    },
+    "现代": {
+      "途胜": {"series": "现代 途胜", "market_name": "途胜", "years": "-", "body": "Tucson (JM/LM/TL/NX4)"},
+      "IX45": {"series": "现代 途胜", "market_name": "途胜", "years": "2009-2015", "body": "2nd gen Tucson (LM)"},
+      "索纳塔": {"series": "现代 索纳塔", "market_name": "索纳塔", "years": "-", "body": "Sonata"}
+    },
+    "雷克萨斯": {
+      "ES": {"series": "雷克萨斯 ES", "market_name": "ES", "years": "-", "body": "XV60(2013-18)/XZ10(2019-25)/XZ20(2026+)"},
+      "GS": {"series": "雷克萨斯 GS", "market_name": "GS", "years": "2005-2020", "body": "S190(2005-11)/L10(2011-20)"},
+      "IS": {"series": "雷克萨斯 IS", "market_name": "IS", "years": "2005-2015", "body": "XE20 (2nd gen IS)"}
+    },
+    "雪佛兰": {
+      "科鲁兹": {"series": "雪佛兰 科鲁兹", "market_name": "科鲁兹", "years": "2008-2023", "body": "J300(2008-16)/D2LC(2016-23)"},
+      "迈锐宝": {"series": "雪佛兰 迈锐宝", "market_name": "迈锐宝", "years": "-", "body": "Malibu (E2XX, 2016-2025)"},
+      "科帕奇": {"series": "雪佛兰 科帕奇", "market_name": "科帕奇", "years": "-", "body": "Captiva (C100/C140, 2006-2018)"}
+    },
+    "吉普": {
+      "大切诺基": {"series": "吉普 大切诺基", "market_name": "大切诺基", "years": "-", "body": "Grand Cherokee"}
+    }
+  },
+  "brand_series_map": {
+    "宝马E90": "宝马 3系",
+    "宝马F30": "宝马 3系",
+    "宝马G20": "宝马 3系",
+    "宝马三系": "宝马 3系",
+    "宝马5系": "宝马 5系",
+    "宝马F10": "宝马 5系",
+    "宝马G30": "宝马 5系",
+    "宝马G38": "宝马 5系",
+    "宝马E60": "宝马 5系",
+    "宝马F02": "宝马 7系",
+    "宝马X1": "宝马 X1",
+    "宝马F15": "宝马 X5",
+    "宝马G05": "宝马 X5",
+    "宝马E70": "宝马 X5",
+    "奔驰W204": "奔驰 C级",
+    "奔驰W205": "奔驰 C级",
+    "奔驰W221": "奔驰 S级",
+    "奔驰CLA": "奔驰 CLA级",
+    "奔驰GLK": "奔驰 GLK级",
+    "帕杰罗V73": "三菱 帕杰罗",
+    "帕杰罗V93": "三菱 帕杰罗",
+    "途乐Y61": "日产 途乐",
+    "途乐Y62": "日产 途乐",
+    "霸道": "丰田 普拉多",
+    "普拉多": "丰田 普拉多",
+    "LC76": "丰田 兰德酷路泽",
+    "LC71": "丰田 兰德酷路泽",
+    "海狮": "丰田 海狮",
+    "海拉克斯": "丰田 海拉克斯",
+    "高六": "大众 高尔夫",
+    "高七": "大众 高尔夫",
+    "迈腾B7": "大众 迈腾",
+    "迈腾B8": "大众 迈腾"
+  }
+}
